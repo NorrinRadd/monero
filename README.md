@@ -286,11 +286,8 @@ invokes cmake commands as needed.
     make debug
     ```
 
-* **Optional**: to build statically-linked binaries:
+* **Optional**: to build statically-linked binaries, read [contrib/depends/README.md](contrib/depends/README.md).
 
-    ```bash
-    make release-static
-    ```
 
 Dependencies need to be built with -fPIC. Static libraries usually aren't, so you may have to build them yourself with -fPIC. Refer to their documentation for how to build them.
 
@@ -464,19 +461,11 @@ Then you can run make as usual.
 
 ### Building portable statically linked binaries
 
-By default, in either dynamically or statically linked builds, binaries target the specific host processor on which the build happens and are not portable to other processors. Portable binaries can be built using the following targets:
-
-* ```make release-static-linux-x86_64``` builds binaries on Linux on x86_64 portable across POSIX systems on x86_64 processors
-* ```make release-static-linux-i686``` builds binaries on Linux on x86_64 or i686 portable across POSIX systems on i686 processors
-* ```make release-static-linux-armv8``` builds binaries on Linux portable across POSIX systems on armv8 processors
-* ```make release-static-linux-armv7``` builds binaries on Linux portable across POSIX systems on armv7 processors
-* ```make release-static-linux-armv6``` builds binaries on Linux portable across POSIX systems on armv6 processors
-* ```make release-static-win64``` builds binaries on 64-bit Windows portable across 64-bit Windows systems
-* ```make release-static-win32``` builds binaries on 64-bit or 32-bit Windows portable across 32-bit Windows systems
+This is documented in [contrib/depends/README.md](contrib/depends/README.md). 
 
 ### Cross Compiling
 
-You can also cross-compile static binaries on Linux for Windows and macOS with the `depends` system.
+You can also cross-compile static binaries on Linux for Windows and macOS with the `depends` system. More details can be found at [contrib/depends/README.md](contrib/depends/README.md).
 
 * ```make depends target=x86_64-linux-gnu``` for 64-bit linux binaries.
 * ```make depends target=x86_64-w64-mingw32``` for 64-bit windows binaries.
@@ -504,7 +493,7 @@ You can also cross-compile static binaries on Linux for Windows and macOS with t
 * ```make depends target=aarch64-linux-android``` for 64bit android binaries
 
 
-The required packages are the names for each toolchain on apt. Depending on your distro, they may have different names. The `depends` system has been tested on Ubuntu 18.04 and 20.04.
+Note the required packages listed directly above. Depending on your distro, they may have different names. The `depends` system has been tested on Ubuntu 18.04 and 20.04.
 
 Using `depends` might also be easier to compile Monero on Windows than using MSYS. Activate Windows Subsystem for Linux (WSL) with a distro (for example Ubuntu), install the apt build-essentials and follow the `depends` steps as depicted above.
 

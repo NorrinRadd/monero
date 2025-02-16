@@ -1,3 +1,5 @@
+All of the following are executed from within this directory. 
+
 ### Usage
 
 To build dependencies for the current arch+OS, from this working directory:
@@ -27,6 +29,10 @@ mkdir build
 cd build
 cmake -DCMAKE_TOOLCHAIN_FILE=$PWD/../contrib/depends/x86_64-w64-mingw32/share/toolchain.cmake ..
 ```
+The following optional flags can also be used to configure the build.
+
+- `-D STATIC=ON` to create a statically linked build
+- `-D CMAKE_BUILD_TYPE=Release` to build without debug symbols or `Debug` to build with them
 
 Common `host-platform-triplets` for cross compilation are:
 
@@ -38,6 +44,9 @@ Common `host-platform-triplets` for cross compilation are:
 - `riscv64-linux-gnu` for Linux RISCV 64 bit
 
 No other options are needed, the paths are automatically configured.
+
+Next, run make inside the build directory. The -j option can be used
+to set the number of jobs that should be used. 
 
 Dependency Options:
 The following can be set when running make: make FOO=bar
