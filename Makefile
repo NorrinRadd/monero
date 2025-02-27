@@ -47,8 +47,9 @@ endif
 all: release-all
 
 depends:
+   HOST_NCORES=$(nproc 2>/dev/null || shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 1)
 	cd contrib/depends && $(MAKE) HOST=$(target) && cd ../.. && mkdir -p build/$(target)/release
-	cd build/$(target)/release && USE_DEVICE_TREZOR_MANDATORY=1 cmake -DCMAKE_TOOLCHAIN_FILE=$(CURDIR)/contrib/depends/$(target)/share/toolchain.cmake ../../.. && $(MAKE)
+	cd build/$(target)/release && USE_DEVICE_TREZOR_MANDATORY=1 cmake -j$HOST_NCORES -DCMAKE_TOOLCHAIN_FILE=$(CURDIR)/contrib/depends/$(target)/share/toolchain.cmake ../../.. && $(MAKE) -j$HOST_NCORES
 
 cmake-debug:
 	mkdir -p $(builddir)/debug
